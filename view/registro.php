@@ -11,26 +11,48 @@
 
     <div>
         <div>
-            <a href="index.php?view=ingreso">Ingreso </a>
+
         </div>
     </div>
 
-    <div>
-        <form method="post">
-            <div>Registrarse al sistema</div>
-            <label>Nombre completo</label>
-            <input type="name" id="name" placeholder="Nombre" name="registroNombre" />
-            <label>Correo</label>
-            <input type="email" id="email" placeholder="Email" name="registroEmail" />
-            <label>Contraeña</label>
-            <input type="password" id="password" placeholder="password" name="registroPassword" />
-            <label>Repetir contraeña</label>
-            <input type="password" id="repetirPassword" placeholder="password" name="repetirPassword" />
+    <div class="flex flex-col">
+        <form method="post" class="flex flex-col items-center">
+            <div class="py-10 text-xl font-bold">Registrarse al sistema</div>
+            <div class="flex flex-col pt-5">
+                <label>Nombre completo</label>
+                <input class="border border-solid rounded-lg hover:bg-gray-50 px-5" type="name" id="name"
+                    name="registroNombre" />
+            </div>
+
+            <div class="flex flex-col pt-5">
+                <label>Correo</label>
+                <input class="border border-solid rounded-lg hover:bg-gray-50 px-5" type="email" id="email"
+                    name="registroEmail" />
+            </div>
+
+            <div class="flex flex-col pt-5">
+                <label>Contraeña</label>
+                <input class="border border-solid rounded-lg hover:bg-gray-50 px-5" type="password" id="password"
+                    name="registroPassword" />
+            </div>
+            <div class="flex flex-col pt-5">
+                <label>Repetir contraeña</label>
+                <input class="border border-solid rounded-lg hover:bg-gray-50 px-5" type="password" id="repetirPassword"
+                    name="repetirPassword" />
+
+            </div>
+
             <?php
 
             $registro = formularioController::registroController();
             ?>
-            <button type="submit">Enviar</button>
+            <div class="pt-5">
+                <button type="submit" class="border border-solid rounded-lg hover:bg-gray-50 px-5">Enviar</button>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="pt-5">¿Ya tenes una cuenta?</div>
+                <a class="font-bold rounded-lg " href="index.php?view=ingreso">Ingresar </a>
+            </div>
         </form>
     </div>
 

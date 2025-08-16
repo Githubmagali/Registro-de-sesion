@@ -20,6 +20,8 @@ session_start();
     <script src="https://cdn.jsdelivr.net/gh/mikhus/jquery-dscountdown@master/dist/jquery.dscountdown.min.js"></script>
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/mikhus/jquery-dscountdown@master/dist/jquery.dscountdown.css">
+    <!--Tailwind-->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 
