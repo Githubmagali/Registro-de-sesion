@@ -1,9 +1,14 @@
 <?php
 $estudiantes = new estudianteController();
 
-$listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
+$listaEstudiantes = $estudiantes::estudiantesDadosDeBajaController();
 
 #print_r($listaEstudiantes);
+
+if (isset($_POST['darAlta'])) {
+    $id = $_POST['darAlta'];
+    $darAlta = $estudiantes::darDeAltaEstudianteController($id);
+}
 
 ?>
 
@@ -50,20 +55,20 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
 
 
                 <?php foreach ($listaEstudiantes as $item): ?>
-                    <?php if ($item['baja'] == 2): ?>
-                        <tr>
-                            <td class="px-4 py-2"><?= $item['nombre'] ?></td>
-                            <td class="px-4 py-2"><?= $item['apellido'] ?></td>
-                            <td class="px-4 py-2"><?= $item['email'] ?></td>
-                            <td class="px-4 py-2"><?= $item['localidad'] ?></td>
-                            <td class="px-4 py-2 flex gap-2">
-                                <form method="post">
-                                    <input type="hidden" value="<?= htmlspecialchars($item['id']); ?>" name="darBaja" />
-                                    <button type="submit" class="text-green-600 hover:underline">Dar de alta</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php endif; ?>
+
+                    <tr>
+                        <td class="px-4 py-2"><?= $item['nombre'] ?></td>
+                        <td class="px-4 py-2"><?= $item['apellido'] ?></td>
+                        <td class="px-4 py-2"><?= $item['email'] ?></td>
+                        <td class="px-4 py-2"><?= $item['localidad'] ?></td>
+                        <td class="px-4 py-2 flex gap-2">
+                            <form method="post">
+                                <input type="hidden" value="<?= htmlspecialchars($item['id']); ?>" name="darAlta" />
+                                <button type="submit" class="text-green-600 hover:underline">Dar de alta</button>
+                            </form>
+                        </td>
+                    </tr>
+
                 <?php endforeach; ?>
 
 

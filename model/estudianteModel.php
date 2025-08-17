@@ -105,4 +105,33 @@ class estudiantesModel
             return "error";
         }
     }
+
+
+    //Ver estudiantes dados de baja 
+
+    public static function estudiantesDadosDeBajaModel($tabla)
+    {
+
+        $stmt = conexion::conectar()->prepare("SELECT * FROM $tabla WHERE baja = 2");
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // dar de alta
+    public static function darDeAltaEstudianteModel($tabla, $estado, $idUsuario)
+    {
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla 
+                                           SET baja = :estado 
+                                           WHERE id = :id");
+
+        $stmt->bindParam(":estado", $estado, PDO::PARAM_INT);
+        $stmt->bindParam(":id", $idUsuario, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+    }
 }

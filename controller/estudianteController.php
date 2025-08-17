@@ -117,4 +117,40 @@ class estudianteController
             echo "<script>alert('Hubo un error al dar de baja al usuario');</script>";
         }
     }
+
+    //Estudiantes dados de baja 
+
+    public static function estudiantesDadosDeBajaController()
+    {
+
+        $tabla = 'Estudiantes';
+
+        return estudiantesModel::estudiantesDadosDeBajaModel($tabla);
+    }
+
+    //Dar de baja a un estudiante
+    public static function darDeAltaEstudianteController($id)
+    {
+
+        $tabla = 'Estudiantes';
+        $estado = 1;
+        $idUsuario = $id;
+
+        $estudiante = estudiantesModel::obtenerIdEstudianteModel($tabla, $idUsuario);
+
+        if ($estudiante['baja'] == 1) {
+            echo "<script>alert('El estudiante ya está dado de alta')
+             window.location.href = 'index.php?view=inicio';</script>";
+            return;
+        }
+
+        $respuesta = estudiantesModel::darDeAltaEstudianteModel($tabla, $estado, $idUsuario);
+
+        if ($respuesta == 'ok') {
+            echo "<script>alert('Estudiante dado de baja correctamente')
+             window.location.href = 'index.php?view=inicio';</script>";
+        } else {
+            echo "<script>alert('Hubo un error al dar de baja al usuario');</script>";
+        }
+    }
 }
