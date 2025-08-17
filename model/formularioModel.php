@@ -111,7 +111,7 @@ class formularioModel
     public static function darDeBajaModel($tabla, $estado, $idUsuario)
     {
         $stmt = Conexion::conectar()->prepare("UPDATE $tabla 
-                                           SET darDeBaja = :estado 
+                                           SET baja = :estado 
                                            WHERE id = :id");
 
         $stmt->bindParam(":estado", $estado, PDO::PARAM_INT);

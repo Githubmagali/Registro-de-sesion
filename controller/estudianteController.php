@@ -94,4 +94,27 @@ class estudianteController
             }
         }
     }
+    //Dar de baja a un estudiante
+    public static function darDeBajaEstudianteController($id)
+    {
+
+        $tabla = 'Estudiantes';
+        $estado = 2;
+        $idUsuario = $id;
+
+        $estudiante = estudiantesModel::obtenerIdEstudianteModel($tabla, $idUsuario);
+
+        if ($estudiante['baja'] == 2) {
+            echo "<script>alert('El estudiante ya está dado de baja');</script>";
+            return;
+        }
+
+        $respuesta = formularioModel::darDeBajaModel($tabla, $estado, $idUsuario);
+
+        if ($respuesta == 'ok') {
+            echo "<script>alert('Estudiante dado de baja correctamente');</script>";
+        } else {
+            echo "<script>alert('Hubo un error al dar de baja al usuario');</script>";
+        }
+    }
 }

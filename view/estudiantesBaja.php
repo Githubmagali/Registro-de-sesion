@@ -1,19 +1,4 @@
 <?php
-if (!isset($_SESSION['validarIngreso'])) {
-    echo '<script>window.location.href = "index.php?view=ingreso";</script>';
-    return;
-} else {
-    if ($_SESSION['validarIngreso'] != 'ok') {
-        echo '<script>window.location.href = "index.php?view=ingreso";</script>';
-        return;
-    }
-}
-
-if (isset($_POST['darBaja'])) {
-    $id = $_POST['darBaja'];
-    $darDebaja = estudianteController::darDeBajaEstudianteController($id);
-}
-
 $estudiantes = new estudianteController();
 
 $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
@@ -21,14 +6,14 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
 #print_r($listaEstudiantes);
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+    <title>Document</title>
 </head>
 
 <body>
@@ -44,6 +29,12 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
         Estoy en inicio
     </div>
     <div class="p-40">
+        <div class="flex gap-x-10">
+            <div class="py-5 flex gap-x-10">
+                <a class="pb-6 font-bold text-gray-600" href="index.php?view=inicio">Volver al inicio</a>
+
+            </div>
+        </div>
 
         <table class="min-w-full divide-y divide-gray-200 border border-gray-300">
             <thead class="bg-gray-200 text-left">
@@ -59,17 +50,16 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
 
 
                 <?php foreach ($listaEstudiantes as $item): ?>
-                    <?php if ($item['baja'] != 2): ?>
+                    <?php if ($item['baja'] == 2): ?>
                         <tr>
                             <td class="px-4 py-2"><?= $item['nombre'] ?></td>
                             <td class="px-4 py-2"><?= $item['apellido'] ?></td>
                             <td class="px-4 py-2"><?= $item['email'] ?></td>
                             <td class="px-4 py-2"><?= $item['localidad'] ?></td>
                             <td class="px-4 py-2 flex gap-2">
-                                <a href="index.php?view=editarEstudiante&id=<?php echo $item['id']; ?>">Editar</a>
                                 <form method="post">
                                     <input type="hidden" value="<?= htmlspecialchars($item['id']); ?>" name="darBaja" />
-                                    <button type="submit" class="text-red-600 hover:underline">Dar de baja</button>
+                                    <button type="submit" class="text-green-600 hover:underline">Dar de alta</button>
                                 </form>
                             </td>
                         </tr>
@@ -78,14 +68,7 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
 
 
             </tbody>
-            <div class="flex gap-x-10">
-                <div class="py-5 flex gap-x-10">
-                    <a class="pb-6 font-bold text-gray-600" href="index.php?view=agregarEstudiante">Agregar registro</a>
-                    <a class="pb-6 font-bold text-gray-600 " href="index.php?view=estudiantesBaja">Ver
-                        estudiantes
-                        dados de baja </a>
-                </div>
-            </div>
+
         </table>
     </div>
 
