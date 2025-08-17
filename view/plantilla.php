@@ -36,7 +36,9 @@ if (isset($_GET['view'])) {
         $_GET['view'] == "ingreso" ||
         $_GET['view'] == "inicio" ||
         $_GET['view'] == "salir" ||
-        $_GET['view'] == "editar"
+        $_GET['view'] == "editar" ||
+        $_GET['view'] == "darDeBaja"
+
 
     ) {
         include "view/" . $_GET['view'] . ".php";

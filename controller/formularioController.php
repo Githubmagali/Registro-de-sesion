@@ -21,6 +21,12 @@ class formularioController
             $password = $_POST['registroPassword'];
             $repetirPassword = $_POST['repetirPassword'];
 
+
+            if ($_POST['registroNombre'] == null || $_POST['registroEmail'] == null || $password == null || $repetirPassword == null) {
+                echo "<script>alert('Complete todos los campos')</script>";
+                return; //detiene la ejecucion
+            }
+
             if ($password != $repetirPassword) {
                 echo "<script>alert('Las contraseñas no coindinen')</script>";
                 return; //detiene la ejecucion
@@ -40,7 +46,8 @@ class formularioController
 
             if ($respuesta == true) {
 
-                echo "<script>alert('Registro exitoso');</script>";
+                echo "<script>alert('Registro exitoso')
+                window.location.href = 'index.php?view=ingreso'; ;</script>";
                 return true;
             } elseif ($respuesta == false) {
                 echo "<script>alert('El correo ya esta registrado')</script>";
@@ -134,6 +141,26 @@ class formularioController
             } else {
                 echo  "<script>alert('Hubo un error!');</script>";
             }
+        }
+    }
+
+
+    //Dar de baja 
+
+    public static function darDeBajaController()
+    {
+
+        $tabla = 'Registros';
+        $estado = 1;
+        $idUsuario = $_SESSION['usuarioId'];
+
+        $respuesta = formularioModel::darDeBajaModel($tabla, $estado, $idUsuario);
+
+        if ($respuesta == 'ok') {
+            echo "<script>alert('Usuario dado de baja correctamente');
+              window.location.href = 'index.php?view=usuarios';</script>";
+        } else {
+            echo "<script>alert('Hubo un error al dar de baja al usuario');</script>";
         }
     }
 }

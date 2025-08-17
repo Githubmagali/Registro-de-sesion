@@ -19,13 +19,11 @@ if (isset($_POST['enviaFormulario']) == 1) {
 </head>
 
 <body>
-    <div class="flex justify-center items-center pt-20 bg-sky-100">
-        <div class="bg-sky-100">
-            <a href="index.php?view=inicio">Inicio</a>
-            <a href="index.php?view=salir">Salir</a>
-        </div>
+    <div class="flex justify-between items-center bg-sky-50 py-5 px-20 ">
+        <a href="index.php?view=inicio">Inicio</a>
+        <a href="index.php?view=salir">Salir</a>
     </div>
-    <div class="flex justify-center items-center pt-20">
+    <div class="flex justify-center items-center pt-20 font-bold text-xl">
         Editar perfil
     </div>
     <div class="flex flex-col  justify-center items-center">
@@ -33,30 +31,32 @@ if (isset($_POST['enviaFormulario']) == 1) {
 
             <div class="flex flex-col py-5">
                 <label>Nombre completo</label>
-                <input type="name" value="<?= htmlspecialchars($usu['nombreCompleto']) ?>" id="name"
-                    name="editarNombre" />
+                <input type="name" class="border border-solid rounded-lg "
+                    value="<?= htmlspecialchars($usu['nombreCompleto']) ?>" id="name" name="editarNombre" />
 
             </div>
             <div class="flex flex-col  py-5">
                 <label>Correo</label>
-                <input type="email" id="email" value="<?= htmlspecialchars($usu['email']) ?>" name="editarEmail" />
+                <input type="email" class="border border-solid rounded-lg " id="email"
+                    value="<?= htmlspecialchars($usu['email']) ?>" name="editarEmail" />
             </div>
             <div class="flex flex-col  py-5">
                 <label>Contraeña</label>
-                <input type="password" id="password" name="editarPassword" />
+                <input type="password" class="border border-solid rounded-lg " id="password" name="editarPassword" />
             </div>
             <div class="flex flex-col  py-5">
                 <label>Repetir contraseña</label>
-                <input type="password" id="password" placeholder="repetir password" name="repetirPassword" />
+                <input type="password" class="border border-solid rounded-lg " id="password"
+                    placeholder="repetir password" name="repetirPassword" />
             </div>
             <div class="flex flex-col  py-5">
                 <label>Telefono</label>
-                <input type="text" id="telefono" value="<?= htmlspecialchars($usu['telefono']) ?>"
-                    name="editarTelefono" />
+                <input type="text" class="border border-solid rounded-lg " id="telefono"
+                    value="<?= htmlspecialchars($usu['telefono']) ?>" name="editarTelefono" />
             </div>
             <div class="flex flex-col  py-5">
                 <label class="py-5">Provincia</label>
-                <select id="provincia" name="editarProvincia">
+                <select id="provincia" class="border border-solid rounded-lg " name="editarProvincia">
                     <option value="jujuy" <?= ($usu['provincia'] == "jujuy") ? "selected" : "" ?>>Jujuy</option>
                     <option value="salta" <?= ($usu['provincia'] == "salta") ? "selected" : "" ?>>Salta</option>
                     <option value="tucuman" <?= ($usu['provincia'] == "tucuman") ? "selected" : "" ?>>Tucuman
@@ -83,18 +83,21 @@ if (isset($_POST['enviaFormulario']) == 1) {
             </div>
             <div class="flex flex-col  py-5">
                 <label>Calle</label>
-                <input type="text" id="calle" value="<?= htmlspecialchars($usu['calle']) ?>" name="editarCalle" />
+                <input class="border border-solid rounded-lg " type="text" id="calle"
+                    value="<?= htmlspecialchars($usu['calle']) ?>" name="editarCalle" />
             </div>
             <div class="flex flex-col  py-5">
                 <label>Altura</label>
-                <input type="text" id="altura" value="<?= htmlspecialchars($usu['altura']) ?>" name="editarAltura" />
+                <input class="border border-solid rounded-lg " type="text" id="altura"
+                    value="<?= htmlspecialchars($usu['altura']) ?>" name="editarAltura" />
             </div>
             <?php
 
             ?>
             <div class="p-10  py-5">
                 <input type="hidden" value="1" name="enviaFormulario" />
-                <button class="" type="submit">Editar</button>
+                <button class="border border-solid rounded-lg hover:bg-gray-50 px-5" type="submit">Editar</button>
+                <a href="index.php?view=darDeBaja">Dar de baja</a>
             </div>
 
 

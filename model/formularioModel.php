@@ -105,4 +105,22 @@ class formularioModel
 
         return $stmt->execute();
     }
+
+
+    // dar de baja 
+    public static function darDeBajaModel($tabla, $estado, $idUsuario)
+    {
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla 
+                                           SET darDeBaja = :estado 
+                                           WHERE id = :id");
+
+        $stmt->bindParam(":estado", $estado, PDO::PARAM_INT);
+        $stmt->bindParam(":id", $idUsuario, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+    }
 }
