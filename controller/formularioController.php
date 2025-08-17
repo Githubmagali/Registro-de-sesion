@@ -69,6 +69,7 @@ class formularioController
             $item = 'email';
             $valor = $_POST['ingresoEmail'];
 
+
             $respuesta = formularioModel::ingresoModel($tabla, $item, $valor);
 
             if (!$respuesta) {
@@ -82,6 +83,9 @@ class formularioController
                 $_SESSION['validarIngreso'] = 'ok';
                 $_SESSION['usuarioId'] = $respuesta['id'];
                 $_SESSION['usuarioNombre'] = $respuesta['nombreCompleto'];
+                $estado = 1;
+
+                formularioModel::volverAltaModel($tabla, $estado, $_SESSION['usuarioId']);
 
                 echo "<script>alert('Ingreso exitoso');
                       window.location.href = 'index.php?view=inicio'; </script> ";
@@ -151,7 +155,7 @@ class formularioController
     {
 
         $tabla = 'Registros';
-        $estado = 1;
+        $estado = 2;
         $idUsuario = $_SESSION['usuarioId'];
 
         $respuesta = formularioModel::darDeBajaModel($tabla, $estado, $idUsuario);

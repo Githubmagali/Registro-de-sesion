@@ -23,9 +23,12 @@ if (isset($_POST['estado']) && $_POST['estado'] == 1) {
 </head>
 
 <body>
-    <div class="flex justify-between items-center bg-sky-50 py-5 px-20 ">
-        <a href="index.php?view=inicio">Inicio</a>
-        <a href="index.php?view=salir">Salir</a>
+    <div class="flex justify-between items-center bg-gray-50 py-5 px-20 ">
+        <div>Logo</div>
+        <div class="flex gap-x-5">
+            <a href="index.php?view=inicio">Inicio</a>
+            <a href="index.php?view=salir">Salir</a>
+        </div>
     </div>
 
     <div class="flex justify-center items-center pt-20 font-bold text-xl">

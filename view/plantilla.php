@@ -37,7 +37,8 @@ if (isset($_GET['view'])) {
         $_GET['view'] == "inicio" ||
         $_GET['view'] == "salir" ||
         $_GET['view'] == "editar" ||
-        $_GET['view'] == "darDeBaja"
+        $_GET['view'] == "editarEstudiante" ||
+        $_GET['view'] == "agregarEstudiante"
 
 
     ) {

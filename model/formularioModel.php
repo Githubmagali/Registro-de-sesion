@@ -94,13 +94,13 @@ class formularioModel
             where id = :id"
         );
 
-        $stmt->bindParam(":nombreCompleto", $datos['nombreCompleto']);
-        $stmt->bindParam(":email", $datos['email']);
-        $stmt->bindParam(":telefono", $datos['telefono']);
-        $stmt->bindParam(":password", $datos['password']);
-        $stmt->bindParam(":provincia", $datos['provincia']);
-        $stmt->bindParam(":calle", $datos['calle']);
-        $stmt->bindParam(":altura", $datos['altura']);
+        $stmt->bindParam(":nombreCompleto", $datos['nombreCompleto'], PDO::PARAM_STR);
+        $stmt->bindParam(":email", $datos['email'], PDO::PARAM_STR);
+        $stmt->bindParam(":telefono", $datos['telefono'], PDO::PARAM_STR);
+        $stmt->bindParam(":password", $datos['password'], PDO::PARAM_STR);
+        $stmt->bindParam(":provincia", $datos['provincia'], PDO::PARAM_STR);
+        $stmt->bindParam(":calle", $datos['calle'], PDO::PARAM_STR);
+        $stmt->bindParam(":altura", $datos['altura'], PDO::PARAM_STR);
         $stmt->bindParam(":id", $datos['id'], PDO::PARAM_INT);
 
         return $stmt->execute();
@@ -121,6 +121,23 @@ class formularioModel
             return "ok";
         } else {
             return "error";
+        }
+    }
+
+
+    //Volver a dar de alta
+
+    public static function volverAltaModel($tabla, $estado, $id)
+    {
+        $stmt = conexion::conectar()->prepare("UPDATE $tabla SET darDeBaja = :darDeBaja WHERE id = :id");
+
+        $stmt->bindParam(":darDeBaja", $estado, PDO::PARAM_INT);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
