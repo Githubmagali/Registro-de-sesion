@@ -12,7 +12,16 @@ class estudianteController
         if (isset($_POST['registrarEstudiante'])) {
 
             $tabla = 'Estudiantes';
+            $nombre = $_POST['agregarNombreE'];
+            $apellido = $_POST['agregarApellidoE'];
 
+            $existeEstudiante = estudiantesModel::verificarEstudianteModel($tabla, $nombre, $apellido);
+
+
+            if ($existeEstudiante) {
+                echo "<script>alert ('El estudiante ya esta registrado');</script>";
+                return false;
+            }
 
             $datos = array(
                 'nombre' => $_POST['agregarNombreE'],

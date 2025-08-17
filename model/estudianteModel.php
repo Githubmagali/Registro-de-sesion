@@ -73,4 +73,19 @@ class estudiantesModel
 
         return $stmt->execute();
     }
+
+
+    //verificar que no haya un estudiante reptido
+
+    public static function verificarEstudianteModel($tabla, $nombre, $apellido)
+    {
+        $stmt = conexion::conectar()->prepare(" SELECT id FROM $tabla WHERE nombre = :nombre AND apellido = :apellido");
+
+        $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':apellido', $apellido, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
