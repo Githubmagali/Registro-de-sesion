@@ -15,21 +15,26 @@ if (isset($_POST['darBaja'])) {
 }
 
 $estudiantes = new estudianteController();
-
 $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
-
 #print_r($listaEstudiantes);
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
+<script>
+/*setTimeout(() => {
+    const alerta = document.getElementById('alerta');
+    alerta.classList.add('opacity-0');
+    setTimeout(() => alerta.remove(), 500);
+}, 3000);*/
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 </head>
+
 
 <body>
     <div class="flex justify-between items-center bg-gray-50 py-5 px-20 ">
@@ -37,6 +42,8 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
         <div class="flex gap-x-5">
             <a href="index.php?view=inicio">Inicio</a>
             <a href="index.php?view=salir">Salir</a>
+            <a href="index.php?view=inicioAdmin">Admin</a>
+
         </div>
 
     </div>
@@ -59,21 +66,21 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
 
 
                 <?php foreach ($listaEstudiantes as $item): ?>
-                    <?php if ($item['baja'] != 2): ?>
-                        <tr>
-                            <td class="px-4 py-2"><?= $item['nombre'] ?></td>
-                            <td class="px-4 py-2"><?= $item['apellido'] ?></td>
-                            <td class="px-4 py-2"><?= $item['email'] ?></td>
-                            <td class="px-4 py-2"><?= $item['localidad'] ?></td>
-                            <td class="px-4 py-2 flex gap-2">
-                                <a href="index.php?view=editarEstudiante&id=<?php echo $item['id']; ?>">Editar</a>
-                                <form method="post">
-                                    <input type="hidden" value="<?= htmlspecialchars($item['id']); ?>" name="darBaja" />
-                                    <button type="submit" class="text-red-600 hover:underline">Dar de baja</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php endif; ?>
+
+                <tr>
+                    <td class="px-4 py-2"><?= $item['nombre'] ?></td>
+                    <td class="px-4 py-2"><?= $item['apellido'] ?></td>
+                    <td class="px-4 py-2"><?= $item['email'] ?></td>
+                    <td class="px-4 py-2"><?= $item['localidad'] ?></td>
+                    <td class="px-4 py-2 flex gap-2">
+                        <a href="index.php?view=editarEstudiante&id=<?php echo $item['id']; ?>">Editar</a>
+                        <form method="post">
+                            <input type="hidden" value="<?= htmlspecialchars($item['id']); ?>" name="darBaja" />
+                            <button type="submit" class="text-red-600 hover:underline">Dar de baja</button>
+                        </form>
+                    </td>
+                </tr>
+
                 <?php endforeach; ?>
 
 

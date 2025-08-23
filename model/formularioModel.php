@@ -135,9 +135,9 @@ class formularioModel
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
-            return true;
+            return "ok";
         } else {
-            return false;
+            return "error";
         }
     }
 }

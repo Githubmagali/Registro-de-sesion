@@ -31,7 +31,7 @@ if (isset($_POST['darAlta'])) {
 
     </div>
     <div class="flex justify-center items-center pt-20">
-        Estoy en inicio
+
     </div>
     <div class="p-40">
         <div class="flex gap-x-10">

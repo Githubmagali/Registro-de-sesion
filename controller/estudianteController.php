@@ -102,12 +102,6 @@ class estudianteController
         $estado = 2;
         $idUsuario = $id;
 
-        $estudiante = estudiantesModel::obtenerIdEstudianteModel($tabla, $idUsuario);
-
-        if ($estudiante['baja'] == 2) {
-            echo "<script>alert('El estudiante ya está dado de baja');</script>";
-            return;
-        }
 
         $respuesta = formularioModel::darDeBajaModel($tabla, $estado, $idUsuario);
 
@@ -128,21 +122,15 @@ class estudianteController
         return estudiantesModel::estudiantesDadosDeBajaModel($tabla);
     }
 
-    //Dar de baja a un estudiante
+
+
+    //Dar de alta a un estudiante
     public static function darDeAltaEstudianteController($id)
     {
 
         $tabla = 'Estudiantes';
         $estado = 1;
         $idUsuario = $id;
-
-        $estudiante = estudiantesModel::obtenerIdEstudianteModel($tabla, $idUsuario);
-
-        if ($estudiante['baja'] == 1) {
-            echo "<script>alert('El estudiante ya está dado de alta')
-             window.location.href = 'index.php?view=inicio';</script>";
-            return;
-        }
 
         $respuesta = estudiantesModel::darDeAltaEstudianteModel($tabla, $estado, $idUsuario);
 

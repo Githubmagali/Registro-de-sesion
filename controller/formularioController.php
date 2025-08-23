@@ -74,6 +74,10 @@ class formularioController
 
             if (!$respuesta) {
                 echo "<script>alert('El correo no está registrado');</script>";
+                // $_SESSION['mensaje'] = [
+                //   'tipo' => 'error',
+                // 'texto' => 'El correo no esta registrado.' ];
+
                 return;
             }
 
@@ -86,9 +90,7 @@ class formularioController
                 $estado = 1;
 
                 formularioModel::volverAltaModel($tabla, $estado, $_SESSION['usuarioId']);
-
-                echo "<script>alert('Ingreso exitoso');
-                      window.location.href = 'index.php?view=inicio'; </script> ";
+                echo "<script>window.location.href = 'index.php?view=inicio'; </script>";
             } else {
                 echo "<script>alert('Contraseña incorrecta');</script>";
 

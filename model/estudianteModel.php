@@ -28,7 +28,8 @@ class estudiantesModel
     public static function obtenerListaEstudiantesModel($tabla)
     {
 
-        $stmt = conexion::conectar()->prepare("SELECT id, nombre, apellido, email, localidad, baja FROM $tabla");
+        $stmt = conexion::conectar()->prepare("SELECT id, nombre, apellido, email, localidad, baja FROM $tabla
+        WHERE baja = 1 OR baja = null");
 
 
         $stmt->execute();
@@ -89,22 +90,7 @@ class estudiantesModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // dar de baja 
-    public static function darDeBajaEstudianteModel($tabla, $estado, $idUsuario)
-    {
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla 
-                                           SET darDeBaja = :estado 
-                                           WHERE id = :id");
 
-        $stmt->bindParam(":estado", $estado, PDO::PARAM_INT);
-        $stmt->bindParam(":id", $idUsuario, PDO::PARAM_INT);
-
-        if ($stmt->execute()) {
-            return "ok";
-        } else {
-            return "error";
-        }
-    }
 
 
     //Ver estudiantes dados de baja 
