@@ -62,10 +62,9 @@ if (isset($_POST['darAlta'])) {
                         <td class="px-4 py-2"><?= $item['email'] ?></td>
                         <td class="px-4 py-2"><?= $item['localidad'] ?></td>
                         <td class="px-4 py-2 flex gap-2">
-                            <form method="post">
-                                <input type="hidden" value="<?= htmlspecialchars($item['id']); ?>" name="darAlta" />
-                                <button type="submit" class="text-green-600 hover:underline">Dar de alta</button>
-                            </form>
+                            <button type="button" data-id="<?= $item['id']; ?>"
+                                class="btnOverlay text-green-600 hover:underline">Dar de alta</button>
+
                         </td>
                     </tr>
 
@@ -76,7 +75,52 @@ if (isset($_POST['darAlta'])) {
 
         </table>
     </div>
+    <!--Overlay -->
+    <div id="overlay" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div class="bg-white p-6 rounded-xl w-96 shadow-lg">
+            <h2 class="text-lg font-bold mb-4">Confirmar acción</h2>
+            <p class="mb-4">¿Seguro que querés dar de alta este estudiante?</p>
+            <div class="flex justify-end gap-3">
+                <button type="button" id="btnCerrarOverlay" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">
+                    Cancelar
+                </button>
+                <form method="post">
+                    <input type="hidden" name="darAlta" id="inputId" />
+                    <button type="submit"
+                        class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Confirmar</button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
+<script>
+    // DOMContentLoaded espero que el html este cargado, cuando el navegador termino de armar el DOM
+    //para evitar que se ejecute antes de que existan elementos como overlay, btnOverlay
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const overlay = document.getElementById('overlay');
+        const inputId = document.getElementById('inputId');
+        const btnCerrarOverlay = document.getElementById('btnCerrarOverlay');
+
+
+        document.querySelectorAll(".btnOverlay").forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.getAttribute('data-id');
+                inputId.value = id; //le paso el id al input darAlta
+
+                overlay.classList.remove('hidden');
+            });
+        });
+
+        btnCerrarOverlay.addEventListener('click', () => {
+            overlay.classList.add('hidden');
+        });
+
+    });
+</script>
 
 </html>

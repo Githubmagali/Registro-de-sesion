@@ -21,69 +21,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-
-
+</html>
 
 <?php
-
-//in_array()sirve para verificar si un valor existe dentro de un array
-
-
-if (isset($_GET['view'])) {
-    $view = $_GET['view'];
-
-    switch ($view) {
-        case "registro":
-        case "ingreso":
-        case "inicio":
-        case "salir":
-        case "editar":
-        case "editarEstudiante":
-        case "agregarEstudiante":
-        case "estudiantesBaja":
-            include "view/$view.php";
-            break;
-        case "inicioAdmin":
-            include "view/admin/$view.php";
-            break;
-        default:
-            include "view/error404.php";
-            break;
-    }
-} else {
-    include "view/inicio.php";
-}
-
-/*
-if (isset($_GET['view'])) {
-
-    if (
-        $_GET['view'] == "registro" ||
-        $_GET['view'] == "ingreso" ||
-        $_GET['view'] == "inicio" ||
-        $_GET['view'] == "salir" ||
-        $_GET['view'] == "editar" ||
-        $_GET['view'] == "editarEstudiante" ||
-        $_GET['view'] == "agregarEstudiante" ||
-        $_GET['view'] == "estudiantesBaja"
-
-
-    ) {
-        include "view/" . $_GET['view'] . ".php";
-    } elseif (
-        $_GET['view'] == "inicioAdmin"
-    ) {
-        include "view/admin/" . $_GET['view'] . ".php";
-    } else {
-        include "view/error404.php";
-    }
-} else {
-    include "view/registro.php";
-}
-
-*/
-
-
-?>
-
-</html>
+$modulos = new enlacesController();
+$modulos->enlacesController();
