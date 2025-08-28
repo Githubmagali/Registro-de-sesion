@@ -9,10 +9,7 @@ if (!isset($_SESSION['validarIngreso'])) {
     }
 }
 
-if (isset($_POST['darBaja'])) {
-    $id = $_POST['darBaja'];
-    $darDebaja = estudianteController::darDeBajaEstudianteController($id);
-}
+
 
 $estudiantes = new estudianteController();
 $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
@@ -96,7 +93,7 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
                 <button type="button" id="btnCerrarOverlay" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">
                     Cancelar
                 </button>
-                <form method="post">
+                <form method="post" id="formulario" action="index.php?view=post_inicio">
                     <input type="hidden" name="darBaja" id="inputId">
                     <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
                         Confirmar
@@ -129,5 +126,17 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
         });
     });
 </script>
+
+<!--Alertas-->
+<?php if (isset($_GET['msg']) && $_GET['msg'] == 'ok'): ?>
+    <script>
+        alert('Estudiante dado de baja correctamente');
+    </script>
+<?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'error'): ?>
+    <script>
+        alert('Hubo un error al dar de baja al estudiante');
+    </script>
+<?php endif; ?>
+
 
 </html>

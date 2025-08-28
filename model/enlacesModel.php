@@ -31,6 +31,9 @@ class enlacesModel
                 case "editar":
                     $ruta = "view/editar.php";
                     break;
+                case "post_inicio":
+                    $ruta = "view/post_inicio.php";
+                    break;
                 case "agregarEstudiante":
                     $ruta = "view/agregarEstudiante.php";
                     break;

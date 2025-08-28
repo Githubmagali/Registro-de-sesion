@@ -103,13 +103,7 @@ class estudianteController
         $idUsuario = $id;
 
 
-        $respuesta = formularioModel::darDeBajaModel($tabla, $estado, $idUsuario);
-
-        if ($respuesta == 'ok') {
-            echo "<script>alert('Estudiante dado de baja correctamente');</script>";
-        } else {
-            echo "<script>alert('Hubo un error al dar de baja al usuario');</script>";
-        }
+        return formularioModel::darDeBajaModel($tabla, $estado, $idUsuario);
     }
 
     //Estudiantes dados de baja 
