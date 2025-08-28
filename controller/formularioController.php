@@ -70,6 +70,7 @@ class formularioController
             $valor = $_POST['ingresoEmail'];
 
 
+
             $respuesta = formularioModel::ingresoModel($tabla, $item, $valor);
 
             if (!$respuesta) {
@@ -87,6 +88,7 @@ class formularioController
                 $_SESSION['validarIngreso'] = 'ok';
                 $_SESSION['usuarioId'] = $respuesta['id'];
                 $_SESSION['usuarioNombre'] = $respuesta['nombreCompleto'];
+                $_SESSION['validar'] = $respuesta['email'];
                 $estado = 1;
 
                 formularioModel::volverAltaModel($tabla, $estado, $_SESSION['usuarioId']);

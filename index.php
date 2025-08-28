@@ -13,7 +13,7 @@ require_once "model/enlacesModel.php";
 require_once "model/conexion.php";
 
 
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 ini_set('upload_max_filesize', '100M');
 ini_set('post_max_size', '101M');
 ini_set('max_input_time', 300);
@@ -28,5 +28,25 @@ define('DB_USER', null);
 define('DB_PASS', null);
 
 
+$arrAdm = ['mavali3@mail.com'];
+
+if (isset($_SESSION['validar'])) {
+    if (in_array($_SESSION['validar'], $arrAdm)) {
+        define('TIPO_USUARIO', 'admin');
+        define('DIRECTORIO', 'admin');
+    } else {
+        define('TIPO_USUARIO', 'usuario');
+        define('DIRECTORIO', '');
+    }
+} else {
+    define('TIPO_USUARIO', 'guest');
+    define('DIRECTORIO', '');
+}
+
 $plantilla = new plantillaController();
 $plantilla->ctrTraerPlantilla();
+
+
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
