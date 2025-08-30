@@ -54,6 +54,9 @@ class enlacesModel
                 case "inicio":
                     $ruta = "view/" . DIRECTORIO . "/inicioAdmin.php";
                     break;
+                case "post_bajaUsu":
+                    $ruta = "view/" . DIRECTORIO . "/post_bajaUsu.php";
+                    break;
                 case "salir":
                     $ruta = "view/salir.php";
                     break;

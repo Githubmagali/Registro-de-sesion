@@ -77,6 +77,25 @@ class formularioModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    //Obtener todas las personas registradas
+    public static function obtenerUsuariosModel($tabla)
+    {
+        $stmt = conexion::conectar()->prepare("SELECT 
+      id,
+      nombreCompleto,
+      email,
+      fechaIngreso,
+      telefono,
+      provincia,
+      calle,
+      altura
+      FROM $tabla");
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     //Editar datos 
 
     public static function editarUsuarioModel($datos, $tabla)
@@ -116,6 +135,23 @@ class formularioModel
 
         $stmt->bindParam(":estado", $estado, PDO::PARAM_INT);
         $stmt->bindParam(":id", $idUsuario, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return "error";
+        }
+    }
+
+    //Dar de baja por id al usuario
+    public static function darBajaUsuarioIdModel($tabla, $id, $estado)
+    {
+
+        $stmt = conexion::conectar()->prepare("UPDATE $tabla set darDeBaja = :darDeBaja
+        WHERE id = :id");
+
+        $stmt->bindParam(":darDeBaja", $estado, PDO::PARAM_INT);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             return "ok";

@@ -112,6 +112,14 @@ class formularioController
         return formularioModel::obtenerUsuarioModel($idUsuario, $tabla);
     }
 
+    //Obtener todos los registros
+    public function obtenerUsuariosController()
+    {
+
+        return formularioModel::obtenerUsuariosModel("Registros");
+    }
+
+
     //Editar usuario 
 
     public function editarUsuarioController()
@@ -170,5 +178,13 @@ class formularioController
         } else {
             echo "<script>alert('Hubo un error al dar de baja al usuario');</script>";
         }
+    }
+
+
+    //Dar de baja por el id 
+    public function darBajaUsuarioIdController($id, $estado)
+    {
+
+        return formularioModel::darBajaUsuarioIdModel("Registros", $id, $estado);
     }
 }

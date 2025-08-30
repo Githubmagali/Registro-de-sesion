@@ -13,4 +13,19 @@ if (isset($_POST['darBaja'])) {
     }
 }
 
+if (isset($_POST['darAlta'])) {
+    $id = $_POST['darAlta'];
+    $darAlta = estudianteController::darDeAltaEstudianteController($id);
+
+    if ($darAlta) {
+        header("Location: index.php?view=estudiantesBaja&msg=ok");
+        exit();
+    } else {
+        header("Location: index.php?view=estudiantesBaja&msg=error");
+        exit();
+    }
+}
+
+
+
 #print_r($_POST);

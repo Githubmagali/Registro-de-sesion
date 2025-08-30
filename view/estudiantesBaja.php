@@ -4,12 +4,6 @@ $estudiantes = new estudianteController();
 $listaEstudiantes = $estudiantes::estudiantesDadosDeBajaController();
 
 #print_r($listaEstudiantes);
-
-if (isset($_POST['darAlta'])) {
-    $id = $_POST['darAlta'];
-    $darAlta = $estudiantes::darDeAltaEstudianteController($id);
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -84,18 +78,14 @@ if (isset($_POST['darAlta'])) {
                 <button type="button" id="btnCerrarOverlay" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">
                     Cancelar
                 </button>
-                <form method="post">
+                <form method="post" action="index.php?view=post_inicio">
                     <input type="hidden" name="darAlta" id="inputId" />
                     <button type="submit"
                         class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Confirmar</button>
                 </form>
-
             </div>
-
         </div>
-
     </div>
-
 </body>
 <script>
     // DOMContentLoaded espero que el html este cargado, cuando el navegador termino de armar el DOM
@@ -121,6 +111,13 @@ if (isset($_POST['darAlta'])) {
         });
 
     });
+</script>
+<script>
+    <?php if (isset($_GET['msg']) && $_GET['msg'] == 'ok'): ?>
+        alert('Estudiante dado de alta correctamente!');
+    <?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'error'): ?>
+        alert('Hubo un error');
+    <?php endif; ?>
 </script>
 
 </html>
