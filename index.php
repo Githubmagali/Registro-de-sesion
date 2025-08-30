@@ -47,6 +47,6 @@ $plantilla = new plantillaController();
 $plantilla->ctrTraerPlantilla();
 
 
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
+#echo "<pre>";
+#print_r($_SESSION);
+#echo "</pre>";

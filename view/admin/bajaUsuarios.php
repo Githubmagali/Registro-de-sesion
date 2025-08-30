@@ -1,8 +1,3 @@
-<?php
-
-$formulario = new formularioController();
-$usuarios = $formulario->obtenerUsuariosController();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +6,7 @@ $usuarios = $formulario->obtenerUsuariosController();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 
 <body>
     <div class="flex justify-between items-center bg-gray-50 py-5 px-20 ">
@@ -41,22 +37,20 @@ $usuarios = $formulario->obtenerUsuariosController();
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($usuarios as $usu): ?>
-                    <tr>
-                        <td class="px-4 py-2"><?= $usu['nombreCompleto'] ?></td>
-                        <td class="px-4 py-2"><?= $usu['email'] ?></td>
-                        <td class="px-4 py-2"><?= date("Y-m-d", strtotime($usu['fechaIngreso'])) ?></td>
-                        <td class="px-4 py-2"><?= $usu['telefono'] ?? 'Sin registro' ?></td>
-                        <td class="px-4 py-2"><?= $usu['calle']  ?> <?= $usu['altura'] ?? 'Sin registro' ?>
-                        </td>
-                        <td class="px-4 py-2"><?= $usu['provincia'] ?? 'Sin registro' ?></td>
-                        <td class="px-4 py-2 flex gap-2">
-                            <button type="button" data-id="<?= $usu['id']; ?>"
-                                class="btnConId text-red-600 hover:underline">Dar de
-                                baja</button>
-                        </td>
-                    </tr> <?php endforeach; ?>
 
+                <tr>
+                    <td class="px-4 py-2"></td>
+                    <td class="px-4 py-2"></td>
+                    <td class="px-4 py-2"></td>
+                    <td class="px-4 py-2"></td>
+                    <td class="px-4 py-2">
+                    </td>
+                    <td class="px-4 py-2"></td>
+                    <td class="px-4 py-2 flex gap-2">
+                        <button type="button" data-id="" class="btnConId text-green-600 hover:underline">Dar de
+                            alta</button>
+                    </td>
+                </tr>
 
             </tbody>
 
@@ -81,35 +75,5 @@ $usuarios = $formulario->obtenerUsuariosController();
     </div>
 </body>
 
+
 </html>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const overlay = document.getElementById('overlay');
-        const inputId = document.getElementById('inputId');
-        const cerrarOverlay = document.getElementById('btnCancelar');
-
-        document.querySelectorAll(".btnConId").forEach(btn => {
-            btn.addEventListener('click', () => {
-                const id = btn.getAttribute('data-id');
-                inputId.value = id; //Le paso el valor del id al input
-
-                overlay.classList.remove('hidden');
-            });
-        });
-
-        cerrarOverlay.addEventListener('click', () => {
-            overlay.classList.add('hidden');
-        });
-    });
-</script>
-
-<!--Alerta-->
-<?php if (isset($_GET['msg']) && $_GET['msg'] == 'ok'): ?>
-    <script>
-        alert('El usuario fue dado de baja correctamente');
-    </script>
-<?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'error'): ?>
-    <script>
-        alert('Hubo un error inesperado');
-    </script>
-<?php endif; ?>

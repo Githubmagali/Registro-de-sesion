@@ -89,7 +89,8 @@ class formularioModel
       provincia,
       calle,
       altura
-      FROM $tabla");
+      FROM $tabla
+      WHERE darDeBaja != 2 OR darDeBaja IS NULL; ");
 
         $stmt->execute();
 
