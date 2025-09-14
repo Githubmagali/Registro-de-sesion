@@ -19,6 +19,7 @@
         href="https://cdn.jsdelivr.net/gh/mikhus/jquery-dscountdown@master/dist/jquery.dscountdown.css">
     <!--Tailwind-->
     <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 
 </html>

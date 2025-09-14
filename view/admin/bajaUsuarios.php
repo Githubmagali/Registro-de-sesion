@@ -1,3 +1,11 @@
+<?php
+
+$for = new formularioController();
+$condiciones = $for->condicionesDeCreditoController();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +23,7 @@
             <a href="index.php?view=inicio">Inicio</a>
             <a href="index.php?view=salir">Salir</a>
             <a href="index.php?view=bajaUsuarios">Baja usuarios</a>
-
+            <a href="index.php?view=pruebaDeTabla">Prueba tabla</a>
         </div>
 
     </div>
@@ -55,6 +63,46 @@
             </tbody>
 
         </table>
+
+        <div class="col-6">
+            <h4>Condiciones de financiamiento</h4>
+
+            <label>Monto financiado (USD)</label>
+            <div><span id="condiciones"></span></div>
+
+            <label>Porcentaje del CAPEX financiado</label>
+            <div><span id="capex"></span></div>
+
+            <label>Plazo (años)</label>
+            <div><span id="plazo"></span></div>
+
+            <label>Tasa de interés (en pesos)</label>
+            <div><span id="interes"></span></div>
+
+            <h4 class="mt-10">Condiciones del Flujo de Fondos</h4>
+            <label>Tasa de descuento</label>
+            <div><span id="descuento"></span></div>
+        </div>
+
+        <script>
+        async function cargarCondiciones() {
+            try {
+                let response = await fetch('');
+                let data = await response.json();
+
+                document.getElementById("condiciones").innerText = "USD " + data.monto_usd;
+                document.getElementById("capex").innerText = data.porcentaje_capex + " %";
+                document.getElementById("plazo").innerText = (data.plazo_meses / 12) + " años";
+                document.getElementById("interes").innerText = data.tasa_interes + " %";
+                document.getElementById("descuento").innerText = data.tasa_descuento + " %";
+            } catch (error) {
+                console.error("Error cargando condiciones:", error);
+            }
+        }
+
+        cargarCondiciones();
+        </script>
+
 
         <!--overlay-->
         <div id="overlay" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">

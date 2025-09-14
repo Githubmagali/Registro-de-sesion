@@ -40,6 +40,9 @@ class enlacesModel
                 case "estudiantesBaja":
                     $ruta = "view/estudiantesBaja.php";
                     break;
+                case "pruebaDeTabla":
+                    $ruta = "view/pruebaDeTabla.php";
+                    break;
                 case "salir":
                     $ruta = "view/salir.php";
                     break;
@@ -59,6 +62,9 @@ class enlacesModel
                     break;
                 case "bajaUsuarios":
                     $ruta = "view/" . DIRECTORIO . "/bajaUsuarios.php";
+                    break;
+                case "pruebaDeTabla":
+                    $ruta = "view/" . DIRECTORIO . "/pruebaDeTabla.php";
                     break;
                 case "salir":
                     $ruta = "view/salir.php";

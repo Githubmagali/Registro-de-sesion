@@ -9,7 +9,9 @@ class formularioModel
     public static function formularioModel($tabla, $datos)
     {
 
-        $stmt = conexion::conectar()->prepare("INSERT INTO $tabla(nombreCompleto, email, password, fechaIngreso)VALUES
+        $stmt = conexion::conectar()->prepare("INSERT INTO $tabla(nombreCompleto, email, password, fechaIngreso)
+          OUTPUT INSERTED.id
+          VALUES
     (:nombreCompleto, :email, :password, :fechaIngreso)");
 
         $stmt->bindParam(":nombreCompleto", $datos['nombreCompleto'], PDO::PARAM_STR);
@@ -18,9 +20,14 @@ class formularioModel
         $stmt->bindParam(":fechaIngreso", $datos['fechaIngreso'], PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-            return true;
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+            $Last_id = $resultado['id'];
+            return $Last_id;
+        } else {
+            echo  "\nPDO::errorInfo():\n";
+            print_r($stmt->errorInfo());
         }
-        return false;
+        $stmt = null;
     }
 
     // Consulta mail 
@@ -51,7 +58,8 @@ class formularioModel
 
     public static function intentosFallidos($tabla, $valor, $id)
     {
-        $stmt = conexion::conectar()->prepare("UPDATE $tabla SET intentosFallidos = :intentosFallidos WHERE id = :id");
+        $stmt = conexion::conectar()->prepare("
+        UPDATE $tabla SET intentosFallidos = :intentosFallidos WHERE id = :id");
 
         $stmt->bindParam("intentosFallidos", $valor, PDO::PARAM_INT);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
@@ -69,8 +77,10 @@ class formularioModel
     public static function obtenerUsuarioModel($id, $tabla)
     {
 
-        $stmt = conexion::conectar()->prepare("SELECT id, nombreCompleto, email, password, telefono, provincia, calle, altura
-        FROM $tabla WHERE id = :id");
+        $stmt = conexion::conectar()->prepare("SELECT
+         id, nombreCompleto, email, password, telefono, provincia, calle, altura
+        FROM $tabla 
+        WHERE id = :id");
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
 
@@ -176,5 +186,16 @@ class formularioModel
         } else {
             return "error";
         }
+    }
+
+    //Condiciones de credito 
+
+    public static function condicionesDeCreditoModel($tabla)
+    {
+        $stmt = conexion::conectar()->prepare("SELECT * FROM $tabla ");
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

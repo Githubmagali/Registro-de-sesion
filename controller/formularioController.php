@@ -187,4 +187,12 @@ class formularioController
 
         return formularioModel::darBajaUsuarioIdModel("Registros", $id, $estado);
     }
+
+    //Condiciones de credito
+
+    public function condicionesDeCreditoController()
+    {
+
+        return  formularioModel::condicionesDeCreditoModel('condiciones_credito');
+    }
 }
