@@ -179,7 +179,7 @@ class formularioModel
         $stmt = conexion::conectar()->prepare("UPDATE $tabla SET darDeBaja = :darDeBaja WHERE id = :id");
 
         $stmt->bindParam(":darDeBaja", $estado, PDO::PARAM_INT);
-        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             return "ok";
@@ -192,10 +192,12 @@ class formularioModel
 
     public static function condicionesDeCreditoModel($tabla)
     {
-        $stmt = conexion::conectar()->prepare("SELECT * FROM $tabla ");
+        $stmt = conexion::conectar()->prepare("SELECT TOP 1 * FROM $tabla ");
 
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($stmt->execute()) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return 'error';
+        }
     }
 }

@@ -1,19 +1,9 @@
 <?php
-if (!isset($_SESSION['validarIngreso'])) {
-    echo '<script>window.location.href = "index.php?view=ingreso";</script>';
-    return;
-} else {
-    if ($_SESSION['validarIngreso'] != 'ok') {
-        echo '<script>window.location.href = "index.php?view=ingreso";</script>';
-        return;
-    }
-}
-
 
 
 $estudiantes = new estudianteController();
 $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
-#print_r($listaEstudiantes);
+
 
 ?>
 <!DOCTYPE html>
@@ -62,8 +52,8 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
                         <td class="px-4 py-2"><?= $item['email'] ?></td>
                         <td class="px-4 py-2"><?= $item['localidad'] ?></td>
                         <td class="px-4 py-2 flex gap-2">
-                            <a href="index.php?view=editarEstudiante&id=<?php echo $item['id']; ?>">Editar</a>
-                            <button type="button" data-id="<?= $item['id']; ?>"
+                            <a href="index.php?view=editarEstudiante&id=<?= base64_encode($item['id']); ?>">Editar</a>
+                            <button type="button" data-id="<?= base64_encode($item['id']); ?>"
                                 class="btnOverlay text-red-600 hover:underline">Dar de baja</button>
 
                         </td>

@@ -2,6 +2,8 @@
 
 $formulario = new formularioController();
 $usuarios = $formulario->obtenerUsuariosController();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +21,7 @@ $usuarios = $formulario->obtenerUsuariosController();
             <a href="index.php?view=inicio">Inicio</a>
             <a href="index.php?view=salir">Salir</a>
             <a href="index.php?view=bajaUsuarios">Baja usuarios</a>
+            <a href="index.php?view=pruebaDeTabla">Prueba de tabla</a>
 
         </div>
 

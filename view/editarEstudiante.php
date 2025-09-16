@@ -1,14 +1,23 @@
 <?php
 
-$datosEstudiante = new estudianteController;
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-$estudiante = $datosEstudiante::obtenerIdEstudianteController($id);
+$r = '';
+$query = parse_url($_SERVER["REQUEST_URI"], PHP_URL_QUERY);
+if ($query !== null) {
+    $r = '';
+    parse_str($query, $output);
+    $m = base64_decode($output['id']);
+    $datosEstudiante = new estudianteController;
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    $estudiante = $datosEstudiante::obtenerIdEstudianteController($m);
 
 
-if (isset($_POST['enviaFormularioE']) && $_POST['enviaFormularioE'] == 1) {
+    if (isset($_POST['enviaFormularioE']) && $_POST['enviaFormularioE'] == 1) {
 
-    $editarEstudiante = $datosEstudiante->editarEstudianteController($id);
+        $editarEstudiante = $datosEstudiante->editarEstudianteController($m);
+    }
 }
+
+
 
 ?>
 <!DOCTYPE html>

@@ -8,10 +8,11 @@ if (isset($_POST['enviaFormulario'])  && $_POST['enviaFormulario'] == 2) {
     $editarUsuario = $datosUsuario->editarUsuarioController();
 }
 
-
 if (isset($_POST['estado']) && $_POST['estado'] == 1) {
     $darDebaja = $datosUsuario->darDeBajaController();
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

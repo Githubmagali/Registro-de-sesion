@@ -1,7 +1,6 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
+
 
 require_once "controller/plantillaController.php";
 require_once "controller/estudianteController.php";
@@ -12,7 +11,7 @@ require_once "model/formularioModel.php";
 require_once "model/enlacesModel.php";
 require_once "model/conexion.php";
 
-
+ini_set('display_errors', 1);
 
 
 ini_set('display_errors', 1);
@@ -49,6 +48,6 @@ $plantilla = new plantillaController();
 $plantilla->ctrTraerPlantilla();
 
 
-#echo "<pre>";
-#print_r($_SESSION);
-#echo "</pre>";
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";

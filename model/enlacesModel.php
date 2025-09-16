@@ -3,7 +3,7 @@ class enlacesModel
 {
     public static function enlacesModel($enlace)
     {
-        $ruta = "view/error404.php";
+
 
 
         if (TIPO_USUARIO === 'guest') {
@@ -15,7 +15,7 @@ class enlacesModel
                     $ruta = "view/registro.php";
                     break;
                 default:
-                    $ruta = "view/ingreso.php";
+                    $ruta = "view/error404.php";
                     break;
             }
             return $ruta;
@@ -34,6 +34,9 @@ class enlacesModel
                 case "post_inicio":
                     $ruta = "view/post_inicio.php";
                     break;
+                case "editarEstudiante":
+                    $ruta = "view/editarEstudiante.php";
+                    break;
                 case "agregarEstudiante":
                     $ruta = "view/agregarEstudiante.php";
                     break;
@@ -42,6 +45,9 @@ class enlacesModel
                     break;
                 case "pruebaDeTabla":
                     $ruta = "view/pruebaDeTabla.php";
+                    break;
+                case "ingreso":
+                    $ruta = "view/ingreso.php";
                     break;
                 case "salir":
                     $ruta = "view/salir.php";
@@ -57,6 +63,9 @@ class enlacesModel
                 case "inicio":
                     $ruta = "view/" . DIRECTORIO . "/inicioAdmin.php";
                     break;
+                case "ingreso":
+                    $ruta = "view/" . DIRECTORIO . "/inicioAdmin.php";
+                    break;
                 case "post_bajaUsu":
                     $ruta = "view/" . DIRECTORIO . "/post_bajaUsu.php";
                     break;
@@ -67,7 +76,7 @@ class enlacesModel
                     $ruta = "view/" . DIRECTORIO . "/pruebaDeTabla.php";
                     break;
                 case "salir":
-                    $ruta = "view/salir.php";
+                    $ruta = "view/" . DIRECTORIO . "/salir.php";
                     break;
                 default:
                     $ruta = "view/error404.php";
