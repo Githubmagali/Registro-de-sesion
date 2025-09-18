@@ -84,14 +84,7 @@ class estudianteController
                 'localidad' => $_POST['editarLocalidadE']
             ];
 
-            $datosEstudiante = estudiantesModel::editarEstudianteController($tabla, $datos);
-
-            if ($datosEstudiante) {
-                echo  "<script>alert('Se pudo editar exitosamente');
-                 window.location.href = 'index.php?view=inicio';</script>";
-            } else {
-                echo  "<script>alert('Hubo un error!');</script>";
-            }
+            return estudiantesModel::editarEstudianteController($tabla, $datos);
         }
     }
     //Dar de baja a un estudiante

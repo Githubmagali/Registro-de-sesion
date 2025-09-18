@@ -43,6 +43,9 @@ class enlacesModel
                 case "estudiantesBaja":
                     $ruta = "view/estudiantesBaja.php";
                     break;
+                case "post_editarEstudiante":
+                    $ruta = "view/post_editarEstudiante.php";
+                    break;
                 case "pruebaDeTabla":
                     $ruta = "view/pruebaDeTabla.php";
                     break;

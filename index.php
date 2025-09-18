@@ -11,8 +11,6 @@ require_once "model/formularioModel.php";
 require_once "model/enlacesModel.php";
 require_once "model/conexion.php";
 
-ini_set('display_errors', 1);
-
 
 ini_set('display_errors', 1);
 ini_set('upload_max_filesize', '100M');
@@ -48,6 +46,6 @@ $plantilla = new plantillaController();
 $plantilla->ctrTraerPlantilla();
 
 
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
+#echo "<pre>";
+#print_r($_SESSION);
+#echo "</pre>";

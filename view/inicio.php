@@ -46,18 +46,18 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
 
                 <?php foreach ($listaEstudiantes as $item): ?>
 
-                    <tr>
-                        <td class="px-4 py-2"><?= $item['nombre'] ?></td>
-                        <td class="px-4 py-2"><?= $item['apellido'] ?></td>
-                        <td class="px-4 py-2"><?= $item['email'] ?></td>
-                        <td class="px-4 py-2"><?= $item['localidad'] ?></td>
-                        <td class="px-4 py-2 flex gap-2">
-                            <a href="index.php?view=editarEstudiante&id=<?= base64_encode($item['id']); ?>">Editar</a>
-                            <button type="button" data-id="<?= base64_encode($item['id']); ?>"
-                                class="btnOverlay text-red-600 hover:underline">Dar de baja</button>
+                <tr>
+                    <td class="px-4 py-2"><?= $item['nombre'] ?></td>
+                    <td class="px-4 py-2"><?= $item['apellido'] ?></td>
+                    <td class="px-4 py-2"><?= $item['email'] ?></td>
+                    <td class="px-4 py-2"><?= $item['localidad'] ?></td>
+                    <td class="px-4 py-2 flex gap-2">
+                        <a href="index.php?view=editarEstudiante&id=<?= base64_encode($item['id']); ?>">Editar</a>
+                        <button type="button" data-id="<?= base64_encode($item['id']); ?>"
+                            class="btnOverlay text-red-600 hover:underline">Dar de baja</button>
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
 
                 <?php endforeach; ?>
 
@@ -97,36 +97,41 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
 
 </body>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const overlay = document.getElementById('overlay');
-        const inputId = document.getElementById('inputId');
-        const btnCerrarOverlay = document.getElementById('btnCerrarOverlay');
+document.addEventListener("DOMContentLoaded", () => {
+    const overlay = document.getElementById('overlay');
+    const inputId = document.getElementById('inputId');
+    const btnCerrarOverlay = document.getElementById('btnCerrarOverlay');
 
-        document.querySelectorAll(".btnOverlay").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const id = btn.getAttribute("data-id");
-                inputId.value = id; //paso el id al input darBaja
+    document.querySelectorAll(".btnOverlay").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id");
+            inputId.value = id; //paso el id al input darBaja
 
-                overlay.classList.remove("hidden");
-            });
-        });
-
-        btnCerrarOverlay.addEventListener("click", () => {
-            overlay.classList.add('hidden');
+            overlay.classList.remove("hidden");
         });
     });
+
+    btnCerrarOverlay.addEventListener("click", () => {
+        overlay.classList.add('hidden');
+    });
+});
 </script>
 
 <!--Alertas-->
+<script>
 <?php if (isset($_GET['msg']) && $_GET['msg'] == 'ok'): ?>
-    <script>
-        alert('Estudiante dado de baja correctamente');
-    </script>
+alert('Estudiante dado de baja correctamente');
 <?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'error'): ?>
-    <script>
-        alert('Hubo un error al dar de baja al estudiante');
-    </script>
+alert('Hubo un error al dar de baja al estudiante');
 <?php endif; ?>
+
+<?php if(isset($_GET['msgEditar']) && $_GET['msgEditar'] == 'ok'): ?>
+alert('Editado correctamente');
+<?php elseif (isset($_GET['msgEditar']) && $_GET['msgEditar'] == 'error'): ?>
+alert('hubo un error');
+<?php endif; ?>
+</script>
+
 
 
 </html>

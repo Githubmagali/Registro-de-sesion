@@ -1,20 +1,16 @@
 <?php
 
-$r = '';
 $query = parse_url($_SERVER["REQUEST_URI"], PHP_URL_QUERY);
+
 if ($query !== null) {
-    $r = '';
+    $m = '';
     parse_str($query, $output);
     $m = base64_decode($output['id']);
     $datosEstudiante = new estudianteController;
-    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
     $estudiante = $datosEstudiante::obtenerIdEstudianteController($m);
 
-
-    if (isset($_POST['enviaFormularioE']) && $_POST['enviaFormularioE'] == 1) {
-
-        $editarEstudiante = $datosEstudiante->editarEstudianteController($m);
-    }
+    #print_r($m);
 }
 
 
@@ -44,7 +40,7 @@ if ($query !== null) {
     </div>
 
     <div class="flex flex-col  justify-center items-center">
-        <form method="post" class="flex flex-col">
+        <form method="post" class="flex flex-col" action="index.php?view=post_editarEstudiante">
 
             <div class="flex flex-col py-5">
                 <label>Nombre</label>
@@ -67,9 +63,11 @@ if ($query !== null) {
                 <label class="py-5">Localidad</label>
                 <input type="text" class="border border-solid rounded-lg " id="email"
                     value="<?= htmlspecialchars($estudiante['localidad']) ?>" name="editarLocalidadE" />
+
             </div>
             <div class="p-10  py-5">
                 <input type="hidden" value="1" name="enviaFormularioE" />
+                <input type="hidden" name="id" value="<?= base64_encode($m) ?>" />
                 <button class="border border-solid rounded-lg hover:bg-gray-50 px-5" type="submit">Editar</button>
         </form>
 
