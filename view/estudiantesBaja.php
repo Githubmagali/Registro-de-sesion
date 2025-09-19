@@ -50,19 +50,23 @@ $listaEstudiantes = $estudiantes::estudiantesDadosDeBajaController();
 
                 <?php foreach ($listaEstudiantes as $item): ?>
 
-                    <tr>
-                        <td class="px-4 py-2"><?= $item['nombre'] ?></td>
-                        <td class="px-4 py-2"><?= $item['apellido'] ?></td>
-                        <td class="px-4 py-2"><?= $item['email'] ?></td>
-                        <td class="px-4 py-2"><?= $item['localidad'] ?></td>
-                        <td class="px-4 py-2 flex gap-2">
-                            <button type="button" data-id="<?= $item['id']; ?>"
-                                class="btnOverlay text-green-600 hover:underline">Dar de alta</button>
+                <tr>
+                    <td class="px-4 py-2"><?= $item['nombre'] ?></td>
+                    <td class="px-4 py-2"><?= $item['apellido'] ?></td>
+                    <td class="px-4 py-2"><?= $item['email'] ?></td>
+                    <td class="px-4 py-2"><?= $item['localidad'] ?></td>
+                    <td class="px-4 py-2 flex gap-2">
+                        <button type="button" data-id="<?= $item['id']; ?>"
+                            class="btnOverlay text-green-600 hover:underline">Dar de alta</button>
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
 
                 <?php endforeach; ?>
+                <?php if ($listaEstudiantes == null): ?>
+                <td>No hay estudiantes</td>
+                <?php endif; ?>
+
 
 
             </tbody>
@@ -88,36 +92,36 @@ $listaEstudiantes = $estudiantes::estudiantesDadosDeBajaController();
     </div>
 </body>
 <script>
-    // DOMContentLoaded espero que el html este cargado, cuando el navegador termino de armar el DOM
-    //para evitar que se ejecute antes de que existan elementos como overlay, btnOverlay
-    document.addEventListener("DOMContentLoaded", () => {
+// DOMContentLoaded espero que el html este cargado, cuando el navegador termino de armar el DOM
+//para evitar que se ejecute antes de que existan elementos como overlay, btnOverlay
+document.addEventListener("DOMContentLoaded", () => {
 
-        const overlay = document.getElementById('overlay');
-        const inputId = document.getElementById('inputId');
-        const btnCerrarOverlay = document.getElementById('btnCerrarOverlay');
+    const overlay = document.getElementById('overlay');
+    const inputId = document.getElementById('inputId');
+    const btnCerrarOverlay = document.getElementById('btnCerrarOverlay');
 
 
-        document.querySelectorAll(".btnOverlay").forEach(btn => {
-            btn.addEventListener('click', () => {
-                const id = btn.getAttribute('data-id');
-                inputId.value = id; //le paso el id al input darAlta
+    document.querySelectorAll(".btnOverlay").forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            inputId.value = id; //le paso el id al input darAlta
 
-                overlay.classList.remove('hidden');
-            });
+            overlay.classList.remove('hidden');
         });
-
-        btnCerrarOverlay.addEventListener('click', () => {
-            overlay.classList.add('hidden');
-        });
-
     });
+
+    btnCerrarOverlay.addEventListener('click', () => {
+        overlay.classList.add('hidden');
+    });
+
+});
 </script>
 <script>
-    <?php if (isset($_GET['msg']) && $_GET['msg'] == 'ok'): ?>
-        alert('Estudiante dado de alta correctamente!');
-    <?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'error'): ?>
-        alert('Hubo un error');
-    <?php endif; ?>
+<?php if (isset($_GET['msg']) && $_GET['msg'] == 'ok'): ?>
+alert('Estudiante dado de alta correctamente!');
+<?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'error'): ?>
+alert('Hubo un error');
+<?php endif; ?>
 </script>
 
 </html>

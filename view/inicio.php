@@ -53,7 +53,7 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
                     <td class="px-4 py-2"><?= $item['localidad'] ?></td>
                     <td class="px-4 py-2 flex gap-2">
                         <a href="index.php?view=editarEstudiante&id=<?= base64_encode($item['id']); ?>">Editar</a>
-                        <button type="button" data-id="<?= base64_encode($item['id']); ?>"
+                        <button type="button" data-id="<?= $item['id']; ?>"
                             class="btnOverlay text-red-600 hover:underline">Dar de baja</button>
 
                     </td>
@@ -125,7 +125,7 @@ alert('Estudiante dado de baja correctamente');
 alert('Hubo un error al dar de baja al estudiante');
 <?php endif; ?>
 
-<?php if(isset($_GET['msgEditar']) && $_GET['msgEditar'] == 'ok'): ?>
+<?php if (isset($_GET['msgEditar']) && $_GET['msgEditar'] == 'ok'): ?>
 alert('Editado correctamente');
 <?php elseif (isset($_GET['msgEditar']) && $_GET['msgEditar'] == 'error'): ?>
 alert('hubo un error');

@@ -8,13 +8,14 @@ class estudiantesModel
     //AGREGAR ESTUDIANTE 
     public static function  agregarEstudianteModel($tabla, $datos)
     {
-        $stmt = conexion::conectar()->prepare("INSERT INTO $tabla(nombre, apellido, email, localidad)VALUES
-    (:nombre, :apellido, :email, :localidad)");
+        $stmt = conexion::conectar()->prepare("INSERT INTO $tabla(nombre, apellido, email, localidad, baja)VALUES
+    (:nombre, :apellido, :email, :localidad, :baja)");
 
         $stmt->bindParam(":nombre", $datos['nombre'], PDO::PARAM_STR);
         $stmt->bindParam(":apellido", $datos['apellido'], PDO::PARAM_STR);
         $stmt->bindParam(":email", $datos['email'], PDO::PARAM_STR);
         $stmt->bindParam(":localidad", $datos['localidad'], PDO::PARAM_STR);
+        $stmt->bindParam(":baja", $datos['baja'], PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             return true;
@@ -29,7 +30,7 @@ class estudiantesModel
     {
 
         $stmt = conexion::conectar()->prepare("SELECT id, nombre, apellido, email, localidad, baja FROM $tabla
-        WHERE baja = 1 OR baja = null");
+        WHERE baja = 1 OR baja = NULL");
 
 
         $stmt->execute();
@@ -80,14 +81,21 @@ class estudiantesModel
 
     public static function verificarEstudianteModel($tabla, $nombre, $apellido)
     {
-        $stmt = conexion::conectar()->prepare(" SELECT id FROM $tabla WHERE nombre = :nombre AND apellido = :apellido");
+        try {
+            $stmt = conexion::conectar()->prepare(" SELECT id FROM $tabla WHERE nombre = :nombre AND apellido = :apellido");
 
-        $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':apellido', $apellido, PDO::PARAM_STR);
+            $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+            $stmt->bindParam(':apellido', $apellido, PDO::PARAM_STR);
 
-        $stmt->execute();
+            $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) //captura errores de la base de datos
+        {
+            error_log("Error en verificar el estudiante" . $e->getMessage());
+        } catch (Exception $e) { //captura cualquier error
+            error_log("Error gral en verificar estud " . $e->getMessage());
+        }
     }
 
 

@@ -27,7 +27,8 @@ class estudianteController
                 'nombre' => $_POST['agregarNombreE'],
                 'apellido' => $_POST['agregarApellidoE'],
                 'email' => $_POST['agregarEmailE'],
-                'localidad' => $_POST['agregarLocalidadE']
+                'localidad' => $_POST['agregarLocalidadE'],
+                'baja' => 1
 
             );
 
@@ -78,7 +79,7 @@ class estudianteController
 
             $datos = [
                 'id' => $id,
-                'nombre' => $_POST['editarNombreE'],
+                'nombre' => "dsdsadsa",
                 'apellido' => $_POST['editarApellidoE'],
                 'email' => $_POST['editarEmailE'],
                 'localidad' => $_POST['editarLocalidadE']
@@ -119,13 +120,6 @@ class estudianteController
         $estado = 1;
         $idUsuario = $id;
 
-        $respuesta = estudiantesModel::darDeAltaEstudianteModel($tabla, $estado, $idUsuario);
-
-        if ($respuesta == 'ok') {
-            echo "<script>alert('Estudiante dado de baja correctamente')
-             window.location.href = 'index.php?view=inicio';</script>";
-        } else {
-            echo "<script>alert('Hubo un error al dar de baja al usuario');</script>";
-        }
+        return estudiantesModel::darDeAltaEstudianteModel($tabla, $estado, $idUsuario);
     }
 }
