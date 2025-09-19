@@ -4,7 +4,7 @@ $registro = new estudianteController;
 
 
 if (isset($_POST['registrarEstudiante'])) {
-    $registrarEstudiante =  estudianteController::agregarEstudianteController();
+    $registrarEstudiante =  $registro->agregarEstudianteController();
 }
 
 ?>

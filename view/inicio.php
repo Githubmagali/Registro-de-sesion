@@ -4,7 +4,6 @@
 $estudiantes = new estudianteController();
 $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,14 +120,18 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 <?php if (isset($_GET['msg']) && $_GET['msg'] == 'ok'): ?>
 alert('Estudiante dado de baja correctamente');
+window.history.replaceState({}, document.title, window.location.pathname);
 <?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'error'): ?>
 alert('Hubo un error al dar de baja al estudiante');
+window.history.replaceState({}, document.title, window.location.pathname);
 <?php endif; ?>
 
 <?php if (isset($_GET['msgEditar']) && $_GET['msgEditar'] == 'ok'): ?>
 alert('Editado correctamente');
+window.history.replaceState({}, document.title, window.location.pathname);
 <?php elseif (isset($_GET['msgEditar']) && $_GET['msgEditar'] == 'error'): ?>
 alert('hubo un error');
+window.history.replaceState({}, document.title, window.location.pathname);
 <?php endif; ?>
 </script>
 

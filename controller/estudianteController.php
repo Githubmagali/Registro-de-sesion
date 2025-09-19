@@ -4,10 +4,14 @@
 class estudianteController
 {
 
+    public $respuestaFront;
+
+
 
     //Registrar estudiante
-    static public function  agregarEstudianteController()
+    public function  agregarEstudianteController()
     {
+
 
         if (isset($_POST['registrarEstudiante'])) {
 
@@ -19,6 +23,9 @@ class estudianteController
 
 
             if ($existeEstudiante) {
+
+                $this->respuestaFront = 1;
+
                 echo "<script>alert ('El estudiante ya esta registrado');</script>";
                 return false;
             }
@@ -79,7 +86,7 @@ class estudianteController
 
             $datos = [
                 'id' => $id,
-                'nombre' => "dsdsadsa",
+                'nombre' => $_POST['editarNombreE'],
                 'apellido' => $_POST['editarApellidoE'],
                 'email' => $_POST['editarEmailE'],
                 'localidad' => $_POST['editarLocalidadE']

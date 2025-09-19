@@ -7,8 +7,10 @@ class estudiantesModel
 
     //AGREGAR ESTUDIANTE 
     public static function  agregarEstudianteModel($tabla, $datos)
-    {
-        $stmt = conexion::conectar()->prepare("INSERT INTO $tabla(nombre, apellido, email, localidad, baja)VALUES
+    { #El output hace que me devuelva directamente el id
+        $stmt = conexion::conectar()->prepare("INSERT INTO $tabla(nombre, apellido, email, localidad, baja)
+        OUTPUT INSERTED.id
+        VALUES
     (:nombre, :apellido, :email, :localidad, :baja)");
 
         $stmt->bindParam(":nombre", $datos['nombre'], PDO::PARAM_STR);
@@ -18,9 +20,14 @@ class estudiantesModel
         $stmt->bindParam(":baja", $datos['baja'], PDO::PARAM_INT);
 
         if ($stmt->execute()) {
-            return true;
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+            $proId = $resultado['id'];
+            return $proId;
+        } else {
+            echo  "\nPDO::errorInfo():\n";
+            print_r($stmt->errorInfo());
         }
-        return false;
+        $stmt = null;
     }
 
 

@@ -119,8 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
 <script>
 <?php if (isset($_GET['msg']) && $_GET['msg'] == 'ok'): ?>
 alert('Estudiante dado de alta correctamente!');
+window.history.replaceState({}, document.title, window.location.pathname);
 <?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'error'): ?>
 alert('Hubo un error');
+window.history.replaceState({}, document.title, window.location.pathname);
 <?php endif; ?>
 </script>
 
