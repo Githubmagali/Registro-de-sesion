@@ -20,7 +20,7 @@ ini_set('max_execution_time', 300);
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-
+#print_r($_SESSION);
 
 define('DB_HOST', 'sqlsrv:Server=localhost\\SQLEXPRESS;Database=WEB2020');
 define('DB_USER', null);

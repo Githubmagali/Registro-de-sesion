@@ -6,6 +6,12 @@ class estudianteController
 
     public $respuestaFront;
 
+    public function respuestaController()
+    {
+
+        $this->respuestaFront = estudiantesModel::estudiantesDadosDeBajaModel('Estudiantes');
+    }
+
 
 
     //Registrar estudiante

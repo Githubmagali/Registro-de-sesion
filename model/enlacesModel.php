@@ -50,7 +50,10 @@ class enlacesModel
                     $ruta = "view/pruebaDeTabla.php";
                     break;
                 case "ingreso":
-                    $ruta = "view/ingreso.php";
+                    $ruta = "view/inicio.php";
+                    break;
+                case "tablaCalculo":
+                    $ruta = "view/tablaCalculo.php";
                     break;
                 case "salir":
                     $ruta = "view/salir.php";

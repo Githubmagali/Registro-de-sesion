@@ -3,7 +3,9 @@ $estudiantes = new estudianteController();
 
 $listaEstudiantes = $estudiantes::estudiantesDadosDeBajaController();
 
-#print_r($listaEstudiantes);
+#$estudiantes->respuestaController();
+
+#print_r($estudiantes->respuestaFront);
 ?>
 
 <!DOCTYPE html>
