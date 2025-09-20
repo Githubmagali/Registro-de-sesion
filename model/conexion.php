@@ -17,3 +17,11 @@ class conexion
         }
     }
 }
+
+#  die("Error de conexion: " . $e->getMessage());
+
+# die detiene la ejecucion 
+
+# echo "Error de conexion: " . $e->getMessage() No detiene la ejecucion
+
+# die y exit(); muestran un mensaje opcional
