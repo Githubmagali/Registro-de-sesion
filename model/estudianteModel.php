@@ -40,9 +40,13 @@ class estudiantesModel
         WHERE baja = 1 OR baja = NULL");
 
 
-        $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($stmt->execute()) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            echo "\nPDO::errorInfo():\n";
+            print_r($stmt->errorInfo());
+        }
     }
 
     //ver estudiante por id 
@@ -54,9 +58,13 @@ class estudiantesModel
         $stmt = conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
 
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-        $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($stmt->execute()) {
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } else {
+            echo "\nPDO::errorInfo():\n";
+            print_r($stmt->errorInfo());
+        }
     }
 
 
@@ -80,7 +88,12 @@ class estudiantesModel
         $stmt->bindParam(":localidad", $datos['localidad'], PDO::PARAM_STR);
         $stmt->bindParam(":id", $datos['id'], PDO::PARAM_INT);
 
-        return $stmt->execute();
+
+        if ($stmt->execute()) {
+            return 'ok';
+        } else {
+            return false;
+        }
     }
 
 
@@ -115,8 +128,12 @@ class estudiantesModel
 
         $stmt = conexion::conectar()->prepare("SELECT * FROM $tabla WHERE baja = 2");
 
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($stmt->execute()) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return false;
+        }
     }
 
     // dar de alta

@@ -45,18 +45,18 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
 
                 <?php foreach ($listaEstudiantes as $item): ?>
 
-                <tr>
-                    <td class="px-4 py-2"><?= $item['nombre'] ?></td>
-                    <td class="px-4 py-2"><?= $item['apellido'] ?></td>
-                    <td class="px-4 py-2"><?= $item['email'] ?></td>
-                    <td class="px-4 py-2"><?= $item['localidad'] ?></td>
-                    <td class="px-4 py-2 flex gap-2">
-                        <a href="index.php?view=editarEstudiante&id=<?= base64_encode($item['id']); ?>">Editar</a>
-                        <button type="button" data-id="<?= $item['id']; ?>"
-                            class="btnOverlay text-red-600 hover:underline">Dar de baja</button>
+                    <tr>
+                        <td class="px-4 py-2"><?= $item['nombre'] ?></td>
+                        <td class="px-4 py-2"><?= $item['apellido'] ?></td>
+                        <td class="px-4 py-2"><?= $item['email'] ?></td>
+                        <td class="px-4 py-2"><?= $item['localidad'] ?></td>
+                        <td class="px-4 py-2 flex gap-2">
+                            <a href="index.php?view=editarEstudiante&id=<?= base64_encode($item['id']); ?>">Editar</a>
+                            <button type="button" data-id="<?= $item['id']; ?>"
+                                class="btnOverlay text-red-600 hover:underline">Dar de baja</button>
 
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
 
                 <?php endforeach; ?>
 
@@ -75,10 +75,10 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
 
     <!--Overlay -->
     <div id="overlay" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-        <div div class="bg-white p-6 rounded-xl w-96 shadow-lg">
+        <div class="bg-white p-6 rounded-xl w-96 shadow-lg">
             <h2 class="text-lg font-bold mb-4">Confirmar acción</h2>
             <p class="mb-4">¿Seguro que querés dar de baja este estudiante?</p>
-            <div div class="flex justify-end gap-3">
+            <div class="flex justify-end gap-3">
                 <button type="button" id="btnCerrarOverlay" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">
                     Cancelar
                 </button>
@@ -96,43 +96,43 @@ $listaEstudiantes = $estudiantes::obtenerListaEstudiantesController();
 
 </body>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const overlay = document.getElementById('overlay');
-    const inputId = document.getElementById('inputId');
-    const btnCerrarOverlay = document.getElementById('btnCerrarOverlay');
+    document.addEventListener("DOMContentLoaded", () => {
+        const overlay = document.getElementById('overlay');
+        const inputId = document.getElementById('inputId');
+        const btnCerrarOverlay = document.getElementById('btnCerrarOverlay');
 
-    document.querySelectorAll(".btnOverlay").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const id = btn.getAttribute("data-id");
-            inputId.value = id; //paso el id al input darBaja
+        document.querySelectorAll(".btnOverlay").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.getAttribute("data-id");
+                inputId.value = id; //paso el id al input darBaja
 
-            overlay.classList.remove("hidden");
+                overlay.classList.remove("hidden");
+            });
+        });
+
+        btnCerrarOverlay.addEventListener("click", () => {
+            overlay.classList.add('hidden');
         });
     });
-
-    btnCerrarOverlay.addEventListener("click", () => {
-        overlay.classList.add('hidden');
-    });
-});
 </script>
 
 <!--Alertas-->
 <script>
-<?php if (isset($_GET['msg']) && $_GET['msg'] == 'ok'): ?>
-alert('Estudiante dado de baja correctamente');
-window.history.replaceState({}, document.title, window.location.pathname);
-<?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'error'): ?>
-alert('Hubo un error al dar de baja al estudiante');
-window.history.replaceState({}, document.title, window.location.pathname);
-<?php endif; ?>
+    <?php if (isset($_GET['msg']) && $_GET['msg'] == 'ok'): ?>
+        alert('Estudiante dado de baja correctamente');
+        window.history.replaceState({}, document.title, window.location.pathname);
+    <?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'error'): ?>
+        alert('Hubo un error al dar de baja al estudiante');
+        window.history.replaceState({}, document.title, window.location.pathname);
+    <?php endif; ?>
 
-<?php if (isset($_GET['msgEditar']) && $_GET['msgEditar'] == 'ok'): ?>
-alert('Editado correctamente');
-window.history.replaceState({}, document.title, window.location.pathname);
-<?php elseif (isset($_GET['msgEditar']) && $_GET['msgEditar'] == 'error'): ?>
-alert('hubo un error');
-window.history.replaceState({}, document.title, window.location.pathname);
-<?php endif; ?>
+    <?php if (isset($_GET['msgEditar']) && $_GET['msgEditar'] == 'ok'): ?>
+        alert('Editado correctamente');
+        window.history.replaceState({}, document.title, window.location.pathname);
+    <?php elseif (isset($_GET['msgEditar']) && $_GET['msgEditar'] == 'error'): ?>
+        alert('hubo un error');
+        window.history.replaceState({}, document.title, window.location.pathname);
+    <?php endif; ?>
 </script>
 
 
